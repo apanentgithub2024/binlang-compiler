@@ -1,4 +1,4 @@
-document.getElementById("compile").addEventListener(() => {
+document.getElementById("compile").addEventListener("click", () => {
 	const program = BINLang(document.getElementById("program").value)
 	const blob = new Blob([program], "application/octet-stream")
 	const bu = URL.createObjectURL(blob)
