@@ -42,8 +42,8 @@ var BINLang = (function(code) {
 					throw new SyntaxError("Expected variable identifier after keyword 'DEF', got empty string")
 				}
 				array.push(1)
-				const tok = compileIdentifier(token)
-				for (const letter of tok) {
+				const tok2 = compileIdentifier(token)
+				for (const letter of tok2) {
 					array.push(letter)
 				}
 				array.push(255)
