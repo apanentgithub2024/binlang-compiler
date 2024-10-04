@@ -32,7 +32,7 @@ var BINLang = (function(code) {
 				for (const letter of tok) {
 					array.push(letter)
 				}
-				array.push(3)
+				array.push(255)
 				array.push(0)
 				id = 0
 				break
@@ -46,7 +46,7 @@ var BINLang = (function(code) {
 				for (const letter of tok) {
 					array.push(letter)
 				}
-				array.push(3)
+				array.push(255)
 				array.push(1)
 				id = 3
 				break
