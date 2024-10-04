@@ -8,8 +8,8 @@ var BINLang = (function(code) {
 	}
 	const reg = /(DEF|SET)\s+[a-zA-Z]*|[0-9]+/g
 	const array = [0]
-	let id = 0, c
-	for (let token; i !== undefined; token = reg.exec(code)) {
+	let id = 0, c, token
+	while ((token = reg.exec(code)) !== undefined) {
 		switch (id) {
 			case 0:
 				c = token.slice(0, 3)
