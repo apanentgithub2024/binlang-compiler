@@ -55,6 +55,6 @@ var BINLang = (function(code) {
 	c = i = "collect this garbage"
 	const arrbuffer = new ArrayBuffer(array.length)
 	const uint = new Uint8Array(arrbuffer)
-	
+	uint.set(array)
 	return arrbuffer
 })
