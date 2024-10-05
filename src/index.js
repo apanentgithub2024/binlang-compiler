@@ -67,10 +67,10 @@ var BINLang = (function(code, o) {
 					throw new SyntaxError("Expected variable identifier after keyword 'UNL', got empty string")
 				}
 				array.push(1)
-				const tok2 = compileIdentifier(token)
-				array.push(...tok2)
+				const tok3 = compileIdentifier(token)
+				array.push(...tok3)
 				array.push(255)
-				array.push(1)
+				array.push(0)
 				id = 0
 				break
 		}
