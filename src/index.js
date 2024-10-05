@@ -7,7 +7,7 @@ var BINLang = (function(code, o) {
 		return new Uint8Array(id.split("").map(i => i.charCodeAt(0) - 65))
 	}
 	const reg = /(DEF|SET)\s+[a-zA-Z]*|[0-9]+/gm
-	const array = [0], tokens = [...code.matchAll(reg)]
+	const array = [0], tokens = [...code.matchAll(reg).map(i => i.join(""))]
 	let id = 0, c
 	for (const token of tokens) {
 		switch (id) {
