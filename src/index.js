@@ -46,7 +46,13 @@ var BINLang = (function(code, o) {
 				id = 3
 				break
 			case 3:
+				if (token.length === 0) {
+					throw new SyntaxError("The 'SET' command must have an integer-based value")
+				}
 				c = Number(token)
+				if (c > 255) {
+					throw new TypeError("Integer values cannot exceed beyond 255 - for more info, 8 bits are used per integer type")
+				}
 				array.push(c)
 				id = 0
 				break
