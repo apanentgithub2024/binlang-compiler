@@ -2,7 +2,7 @@
 // PLATFORM: GitHub
 // PROFILE: https://github.com/apanentgithub2024
 // LICENSE: MIT License
-var BINLang = (function(code) {
+var BINLang = (function(code, o) {
 	function compileIdentifier(id) {
 		return new Uint8Array(id.split("").map(i => i.charCodeAt(0) - 65))
 	}
@@ -36,7 +36,7 @@ var BINLang = (function(code) {
 			case 2:
 				c = null
 				if (token.length === 0) {
-					throw new SyntaxError("Expected variable identifier after keyword 'DEF', got empty string")
+					throw new SyntaxError("Expected variable identifier after keyword 'SET', got empty string")
 				}
 				array.push(1)
 				const tok2 = compileIdentifier(token)
@@ -56,5 +56,5 @@ var BINLang = (function(code) {
 	const arrbuffer = new ArrayBuffer(array.length)
 	const uint = new Uint8Array(arrbuffer)
 	uint.set(array)
-	return arrbuffer
+	return o === "arraybuffer" || !o ? arrbuffer : uint
 })
