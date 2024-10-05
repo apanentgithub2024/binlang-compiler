@@ -6,7 +6,7 @@ var BINLang = (function(code) {
 	function compileIdentifier(id) {
 		return new Uint8Array(id.split("").map(i => i.charCodeAt(0) - 65))
 	}
-	const reg = /(DEF|SET)\s+[a-zA-Z]*|[0-9]+/g
+	const reg = /(DEF|SET)\s+[a-zA-Z]*|[0-9]+/gm
 	const array = [0], tokens = [...code.matchAll(reg)]
 	let id = 0, c
 	for (const token of tokens) {
@@ -28,9 +28,7 @@ var BINLang = (function(code) {
 				}
 				array.push(0)
 				const tok = compileIdentifier(token)
-				for (const letter of tok) {
-					array.push(letter)
-				}
+				array.push(...tok)
 				array.push(255)
 				array.push(0)
 				id = 0
@@ -42,9 +40,7 @@ var BINLang = (function(code) {
 				}
 				array.push(1)
 				const tok2 = compileIdentifier(token)
-				for (const letter of tok2) {
-					array.push(letter)
-				}
+				array.push(...tok2)
 				array.push(255)
 				array.push(1)
 				id = 3
@@ -59,6 +55,6 @@ var BINLang = (function(code) {
 	c = i = "collect this garbage"
 	const arrbuffer = new ArrayBuffer(array.length)
 	const uint = new Uint8Array(arrbuffer)
-	uint.set(array)
+	
 	return arrbuffer
 })
