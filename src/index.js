@@ -22,8 +22,6 @@ var BINLang = (function(code, o) {
 				} else if (c === "UNL") {
 					array.push(3)
 					id = 4
-				} else {
-					throw new SyntaxError("Unexpected token " + token)
 				}
 				break
 			case 1:
