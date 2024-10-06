@@ -4,7 +4,7 @@
 // LICENSE: MIT License
 var BINLang = (function(code, o) {
 	function compileIdentifier(id) {
-		return new Uint8Array(id.split("").map(i => i.charCodeAt(0) - 65))
+		return new Uint8Array(id.split("").map(i => i.charCodeAt(0)))
 	}
 	const reg = /(DEF|SET|REM)\s+|[0-9]+|[a-zA-Z]+/gm
 	const array = [0], tokens = [...code.matchAll(reg).map(i => i.join(""))]
