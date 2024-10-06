@@ -4,9 +4,18 @@
 // LICENSE: MIT License
 var BINLang = (function(code, o) {
 	function compileIdentifier(id) {
-		return new Uint8Array(id.split("").map(i => i.charCodeAt(0)))
+		const data = new Uint8Array(id.split("").map(i => i.charCodeAt(0) - 65)), arr = []
+		// The data has the uncompressed data, the 'arr' has the compressed data ('z' points to code 57)
+		for (let i = 0; i < data.length; i++) {
+			if (i % 4 === 0) {
+				arr.push(data[i])
+			} else {
+				arr[arr.length - 1] += data[i]
+			}
+		}
+		return arr
 	}
-	const reg = /(DEF|SET|REM)\s+|[0-9]+|[a-zA-Z]+/gm
+	const reg = /[0-9]+|[a-zA-Z]+/gm
 	const array = [0], tokens = [...code.matchAll(reg).map(i => i.join(""))]
 	let id = 0, c
 	for (const token of tokens) {
