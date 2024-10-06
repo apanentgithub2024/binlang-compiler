@@ -3,7 +3,7 @@
 // PROFILE: https://github.com/Unnamedbruh
 // LICENSE: MIT License
 var BINLang = (function(code, o, compressed = true) {
-	const summedId = []
+	const idPointer = []
 	function compileIdentifier(id, unique = false) {
 		const data = new Uint8Array(id.split("").map(i => i.charCodeAt(0) - 65)), arr = []
 		if (compressed) {
@@ -18,7 +18,7 @@ var BINLang = (function(code, o, compressed = true) {
 			const e = arr.reduce((a, b) => a + b, 0)
 			arr.push(idPointer.reduce((a, b) => b[0] === id && b[1] !== e ? a + 1 : a, 0))
 			if (unique) {
-				summedId.push([id, e])
+				idPointer.push([id, e])
 			}
 			return new Uint8Array(arr)
 		} else {
