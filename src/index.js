@@ -13,7 +13,7 @@ var BINLang = (function(code, o) {
 				arr[arr.length - 1] += data[i]
 			}
 		}
-		return arr
+		return new Uint8Array(arr)
 	}
 	const reg = /[0-9]+|[a-zA-Z]+/gm
 	const array = [0], tokens = [...code.matchAll(reg).map(i => i.join(""))]
