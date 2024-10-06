@@ -1,6 +1,6 @@
 // NAME: Unnamedbruh
 // PLATFORM: GitHub
-// PROFILE: https://github.com/apanentgithub2024
+// PROFILE: https://github.com/Unnamedbruh
 // LICENSE: MIT License
 var BINLang = (function(code, o) {
 	function compileIdentifier(id) {
