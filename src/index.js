@@ -3,7 +3,8 @@
 // PROFILE: https://github.com/Unnamedbruh
 // LICENSE: MIT License
 var BINLang = (function(code, o, compressed = true) {
-	function compileIdentifier(id) {
+	const summedId = [], idPointer = []
+	function compileIdentifier(id, unique = false) {
 		const data = new Uint8Array(id.split("").map(i => i.charCodeAt(0) - 65)), arr = []
 		if (compressed) {
 			// The data has the uncompressed data, the 'arr' has the compressed data ('z' points to code 57)
@@ -13,6 +14,12 @@ var BINLang = (function(code, o, compressed = true) {
 				} else {
 					arr[arr.length - 1] += data[i]
 				}
+			}
+			const e = data.reduce((a, b) => a + b, 0)
+			arr.push(idPointer.find(i => i[0] === arr)[1] || summedId.reduce((a, b) => b === e ? a + 1 : a, 0))
+			if (unique) {
+				summedId.push(e)
+				idPointer.push([arr, idPointer.length])
 			}
 			return new Uint8Array(arr)
 		} else {
@@ -25,14 +32,13 @@ var BINLang = (function(code, o, compressed = true) {
 	for (const token of tokens) {
 		switch (id) {
 			case 0:
-				c = token.slice(0, 3)
-				if (c === "DEF") {
+				if (token === "DEF") {
 					array.push(1)
 					id = 1
-				} else if (c === "SET") {
+				} else if (token === "SET") {
 					array.push(2)
 					id = 2
-				} else if (c === "REM") {
+				} else if (token === "REM") {
 					array.push(3)
 					id = 4
 				}
@@ -43,7 +49,7 @@ var BINLang = (function(code, o, compressed = true) {
 					throw new SyntaxError("Expected variable identifier after keyword 'DEF', got empty string")
 				}
 				array.push(0)
-				const tok = compileIdentifier(token)
+				const tok = compileIdentifier(token, true)
 				array.push(...tok, 255)
 				id = 0
 				break
