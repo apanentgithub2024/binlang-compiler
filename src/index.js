@@ -102,6 +102,7 @@ var BINLang = (function(code, o, compressed = true, interpretCheck = true) {
 									throw new TypeError("The answer to two integers added cannot exceed beyond 255 - for more info, 8 bits are used per integer type")
 								}
 								break
+						}
 					} else {
 						throw new ReferenceError("One of the variables are not defined yet")
 					}
