@@ -90,7 +90,7 @@ var BINLang = (function(code, o, compressed = true, interpretCheck = true) {
 				array.push(c)
 				id = 0
 				if (interpretCheck) {
-					const ca = [...tok].reduce((e, i) => e + String.fromCharCode(i + 1), "")
+					const ca = [...lastVar].reduce((e, i) => e + String.fromCharCode(i + 1), "")
 					if (vars[ca] === null || vars[ca] === 0 || vars[ca]) {
 						switch (val) {
 							case "SET":
@@ -117,7 +117,7 @@ var BINLang = (function(code, o, compressed = true, interpretCheck = true) {
 				const tok3 = compileIdentifier(token)
 				array.push(...tok3, 255)
 				if (interpretCheck) {
-					const ca = [...tok].reduce((e, i) => e + String.fromCharCode(i + 1), "")
+					const ca = [...lastVar].reduce((e, i) => e + String.fromCharCode(i + 1), "")
 					if (vars[ca] === null || vars[ca] === 0 || vars[ca]) {
 						delete vars[ca]
 					} else {
